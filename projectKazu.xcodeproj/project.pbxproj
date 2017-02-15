@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187435781E53FFD40013AD33 /* secondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187435771E53FFD40013AD33 /* secondViewController.swift */; };
+		1874357A1E5400300013AD33 /* thirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187435791E5400300013AD33 /* thirdViewController.swift */; };
+		1874357C1E5400700013AD33 /* fourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874357B1E5400700013AD33 /* fourthViewController.swift */; };
+		1874357E1E5400940013AD33 /* fifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874357D1E5400940013AD33 /* fifthViewController.swift */; };
 		18D3F8BC1E4D69370085AA61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3F8BB1E4D69370085AA61 /* AppDelegate.swift */; };
 		18D3F8BE1E4D69370085AA61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3F8BD1E4D69370085AA61 /* ViewController.swift */; };
 		18D3F8C11E4D69370085AA61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D3F8BF1E4D69370085AA61 /* Main.storyboard */; };
@@ -34,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187435771E53FFD40013AD33 /* secondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secondViewController.swift; sourceTree = "<group>"; };
+		187435791E5400300013AD33 /* thirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = thirdViewController.swift; sourceTree = "<group>"; };
+		1874357B1E5400700013AD33 /* fourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fourthViewController.swift; sourceTree = "<group>"; };
+		1874357D1E5400940013AD33 /* fifthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fifthViewController.swift; sourceTree = "<group>"; };
 		18D3F8B81E4D69370085AA61 /* projectKazu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = projectKazu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D3F8BB1E4D69370085AA61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D3F8BD1E4D69370085AA61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +108,10 @@
 				18D3F8BB1E4D69370085AA61 /* AppDelegate.swift */,
 				18D3F8BD1E4D69370085AA61 /* ViewController.swift */,
 				18D3F8BF1E4D69370085AA61 /* Main.storyboard */,
+				1874357D1E5400940013AD33 /* fifthViewController.swift */,
+				1874357B1E5400700013AD33 /* fourthViewController.swift */,
+				187435791E5400300013AD33 /* thirdViewController.swift */,
+				187435771E53FFD40013AD33 /* secondViewController.swift */,
 				18D3F8C21E4D69370085AA61 /* Assets.xcassets */,
 				18D3F8C41E4D69370085AA61 /* LaunchScreen.storyboard */,
 				18D3F8C71E4D69370085AA61 /* Info.plist */,
@@ -259,7 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1874357C1E5400700013AD33 /* fourthViewController.swift in Sources */,
 				18D3F8BE1E4D69370085AA61 /* ViewController.swift in Sources */,
+				1874357E1E5400940013AD33 /* fifthViewController.swift in Sources */,
+				187435781E53FFD40013AD33 /* secondViewController.swift in Sources */,
+				1874357A1E5400300013AD33 /* thirdViewController.swift in Sources */,
 				18D3F8BC1E4D69370085AA61 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,6 +521,7 @@
 				18D3F8E21E4D69370085AA61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18D3F8E31E4D69370085AA61 /* Build configuration list for PBXNativeTarget "projectKazuTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +530,7 @@
 				18D3F8E51E4D69370085AA61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18D3F8E61E4D69370085AA61 /* Build configuration list for PBXNativeTarget "projectKazuUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +539,7 @@
 				18D3F8E81E4D69370085AA61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
