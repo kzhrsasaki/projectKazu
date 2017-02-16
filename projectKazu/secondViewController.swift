@@ -8,7 +8,7 @@
 
 import UIKit
 
-class secondViewController: UIViewController, UITextFieldDelegate {
+class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate {
 
     @IBOutlet weak var formView: UIView!
 
@@ -21,13 +21,13 @@ class secondViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        //現在時刻を取得.
+        //現在時刻を取得
         let myDate: Date = Date()
         
-        //カレンダーを取得.
+        //カレンダーを取得
         let myCalendar: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         
-        //取得するコンポーネントを決める.
+        //取得するコンポーネントを決める
         let myComponetns1 = myCalendar.components(
             [NSCalendar.Unit.year,NSCalendar.Unit.month,NSCalendar.Unit.day,NSCalendar.Unit.weekday],
             from: myDate)
@@ -60,23 +60,58 @@ class secondViewController: UIViewController, UITextFieldDelegate {
         myLabel2.text = myStr2
         
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        //タイトル（textField)が編集された際に呼ばれる
+        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string1: String) -> Bool {
         
         // 文字数最大を決める.
-        let maxLength: Int = 6
+        let maxLength1: Int = 11
         
         // 入力済みの文字と入力された文字を合わせて取得.
-        let str = textField.text! + string
+        let str1 = textField.text! + string1
         
-        // 文字数がmaxLength以下ならtrueを返す.
-        if str.characters.count < maxLength {
+        // 文字数がmaxLength以下ならtrueを返し、超えていればアラートを表示させる
+        if str1.characters.count < maxLength1 {
             return true
+        } else {
+            print("10文字を超えています")
+            return false
+            //アラートを作る
+            let alertController = UIAlertController(title: "文字数エラー", message: "10文字を超えています", preferredStyle: .alert)
+            
+            //OKボタンを追加 handler...ボタンが押された時発動する処理を記述
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in print("OK")}))
+            
+            //アラートを表示する
+            present(alertController,animated: true, completion: nil)
         }
-        print("6文字を超えています")
-        return false
-    }
+            
+        //内容（textView）が編集された際に呼ばれる
+        func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
 
+            
+//        func textView(textView: UITextView, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            
+        // 文字数最大を決める.
+        let maxLength2: Int = 11
+        // textViewの文字数と最大文字数との比較
+        if text.characters.count < maxLength2 {
+                
+                return true
+            } else {
+                print("100文字を超えています")
+                return false
+                //アラートを作る
+                let alertController = UIAlertController(title: "文字数エラー", message: "100文字を超えています", preferredStyle: .alert)
+                
+                //OKボタンを追加 handler...ボタンが押された時発動する処理を記述
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in print("OK")}))
+                
+                //アラートを表示する
+                present(alertController,animated: true, completion: nil)
+            }
+            
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     

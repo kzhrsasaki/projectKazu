@@ -61,7 +61,7 @@
                                         <rect key="frame" x="156" y="519" width="73" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="入り口">
+                                        <state key="normal" title="ログイン">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
@@ -91,7 +91,7 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
-        <!--Item 2-->
+        <!--View Controller-->
         <scene sceneID="fmz-Xs-HjD">
             <objects>
                 <viewController id="G5f-lf-1q7" sceneMemberID="viewController">
@@ -192,7 +192,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="qsZ-6W-zSL"/>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="qsZ-6W-zSL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E3f-6W-a9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -283,7 +283,7 @@
             </objects>
             <point key="canvasLocation" x="877.60000000000002" y="873.91304347826099"/>
         </scene>
-        <!--Item 1-->
+        <!--Second View Controller-->
         <scene sceneID="Nzg-jD-5EP">
             <objects>
                 <viewController id="B33-tj-MrA" customClass="secondViewController" customModule="projectKazu" customModuleProvider="target" sceneMemberID="viewController">
@@ -299,19 +299,15 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="582"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-uc-0jo">
-                                        <rect key="frame" x="124" y="163" width="227" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="exS-YA-c2B">
                                         <rect key="frame" x="20" y="239" width="331" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="B33-tj-MrA" id="Y3W-0L-0I3"/>
+                                        </connections>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfk-Av-oa8">
                                         <rect key="frame" x="20" y="163" width="70" height="21"/>
@@ -395,13 +391,23 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-uc-0jo">
+                                        <rect key="frame" x="124" y="163" width="227" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="B33-tj-MrA" id="dAR-wb-CEM"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="0.5" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="Fda-LQ-Kfn"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="Fda-LQ-Kfn"/>
                     <connections>
                         <outlet property="formView" destination="6dY-9P-QlW" id="POJ-67-FfI"/>
                         <outlet property="myContents" destination="exS-YA-c2B" id="M5C-J1-UxL"/>
