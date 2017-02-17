@@ -16,7 +16,9 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
     @IBOutlet weak var myLabel2: UILabel!
     @IBOutlet weak var myTitle: UITextField!
     @IBOutlet weak var myContents: UITextView!
-
+    
+    @IBOutlet weak var mySwitch: UISwitch!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +61,28 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
         var myStr2: String = "明日は、" + "\(myComponetns2.year!)年" + "\(myComponetns2.month!)月" + "\(myComponetns2.day!)日[" + "\(weekdayStrings2[myComponetns2.weekday!])]" + "です！"
         myLabel2.text = myStr2
         
+        //キーボードの上に「閉じる」ボタンを配置 （closeKeyBoardメソッドを下段に先に書いておく）
+        //ビューを作成
+        let upView = UIView()
+        upView.frame.size.height = 35 //高さ指定
+        upView.backgroundColor = UIColor.lightGray
+        
+        //閉じるボタンを右上に作成
+        let closeButton = UIButton(frame: CGRect(x: self.view.bounds.width - 70, y: 0, width: 70, height: 30))
+        closeButton.setTitle("閉じる", for: .normal)
+        
+        //閉じるボタンにイベントを設定
+        closeButton.addTarget(self, action: #selector(closeKeyBoard(sender:)), for: .touchUpInside)
+        
+        //ビューに閉じるボタンを追加
+        upView.addSubview(closeButton)
+        
+        //キーボードのアクセサリービューを設定
+        myContents.inputAccessoryView = upView
+        
+        //switchの初期値を「いいえ」にしておく
+        mySwitch.isOn = false
+    
     }
         //タイトル（textField)が編集された際に呼ばれる
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string1: String) -> Bool {
@@ -74,7 +98,7 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
             return true
         } else {
             print("10文字を超えています")
-            return false
+            
             //アラートを作る
             let alertController = UIAlertController(title: "文字数エラー", message: "10文字を超えています", preferredStyle: .alert)
             
@@ -83,23 +107,22 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
             
             //アラートを表示する
             present(alertController,animated: true, completion: nil)
+            
+            return false
         }
             
-        //内容（textView）が編集された際に呼ばれる
-        func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    }
 
-            
-//        func textView(textView: UITextView, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+
         // 文字数最大を決める.
-        let maxLength2: Int = 11
+        let maxLength2: Int = 101
         // textViewの文字数と最大文字数との比較
-        if text.characters.count < maxLength2 {
-                
-                return true
+        if textView.text.characters.count < maxLength2 {
+            return true
+            
             } else {
                 print("100文字を超えています")
-                return false
                 //アラートを作る
                 let alertController = UIAlertController(title: "文字数エラー", message: "100文字を超えています", preferredStyle: .alert)
                 
@@ -108,10 +131,33 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
                 
                 //アラートを表示する
                 present(alertController,animated: true, completion: nil)
+            
+                return false
             }
             
         }
+    
+    //キーボードを閉じる（右上に完了文字）
+    func closeKeyBoard(sender:UIButton){
+        
+        myContents.resignFirstResponder()
     }
+
+    
+    @IBAction func changeSwitch(_ sender: UISwitch) {
+        //print("切り替わったよ")
+        print(sender.isOn)
+        
+        if sender.isOn {
+            // SwitchがONのとき実行される
+            print("スイッチON")
+        }else{
+            // SwitchがOFFのとき実行される
+            print("スイッチOFF")
+        }
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     

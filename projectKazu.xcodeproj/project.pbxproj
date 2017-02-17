@@ -18,6 +18,7 @@
 		18D3F8C61E4D69370085AA61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D3F8C41E4D69370085AA61 /* LaunchScreen.storyboard */; };
 		18D3F8D11E4D69370085AA61 /* projectKazuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3F8D01E4D69370085AA61 /* projectKazuTests.swift */; };
 		18D3F8DC1E4D69370085AA61 /* projectKazuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3F8DB1E4D69370085AA61 /* projectKazuUITests.swift */; };
+		18FF86361E5680CC00F7AD9D /* projectKazu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18FF86341E5680CC00F7AD9D /* projectKazu.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		18D3F8D71E4D69370085AA61 /* projectKazuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = projectKazuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D3F8DB1E4D69370085AA61 /* projectKazuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectKazuUITests.swift; sourceTree = "<group>"; };
 		18D3F8DD1E4D69370085AA61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18FF86351E5680CC00F7AD9D /* projectKazu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = projectKazu.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			children = (
 				18D3F8BB1E4D69370085AA61 /* AppDelegate.swift */,
 				18D3F8BD1E4D69370085AA61 /* ViewController.swift */,
+				18FF86341E5680CC00F7AD9D /* projectKazu.xcdatamodeld */,
 				18D3F8BF1E4D69370085AA61 /* Main.storyboard */,
 				1874357D1E5400940013AD33 /* fifthViewController.swift */,
 				1874357B1E5400700013AD33 /* fourthViewController.swift */,
@@ -277,6 +280,7 @@
 				187435781E53FFD40013AD33 /* secondViewController.swift in Sources */,
 				1874357A1E5400300013AD33 /* thirdViewController.swift in Sources */,
 				18D3F8BC1E4D69370085AA61 /* AppDelegate.swift in Sources */,
+				18FF86361E5680CC00F7AD9D /* projectKazu.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +546,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		18FF86341E5680CC00F7AD9D /* projectKazu.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18FF86351E5680CC00F7AD9D /* projectKazu.xcdatamodel */,
+			);
+			currentVersion = 18FF86351E5680CC00F7AD9D /* projectKazu.xcdatamodel */;
+			path = projectKazu.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 18D3F8B01E4D69370085AA61 /* Project object */;
 }
