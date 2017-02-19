@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         
     }
 
+
     @IBAction func changeSwitch(_ sender: UISwitch) {
         print(sender.isOn)
         
@@ -28,8 +29,9 @@ class ViewController: UIViewController {
         }else{
             print("スイッチOFF")
         }
-    }
 
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
