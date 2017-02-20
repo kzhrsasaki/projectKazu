@@ -20,6 +20,9 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
     
     @IBOutlet weak var mySwitch: UISwitch!
     
+    //辞書配列の定義（文字列で良いか？）
+    var todoList:[String] = NSArray() as! [String]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,8 +86,53 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
         
         //switchの初期値を「いいえ」にしておく
         mySwitch.isOn = false
-    
+        
     }
+    
+    // 登録ボタンが押された時にデータを新規登録する
+    @IBAction func tapResister(_ sender: UIButton) {
+        //AppDelegateを使う用意をしておく
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        //エンティティを操作するためのオブジェクトを作成
+        let viewContext = appDelegate.persistentContainer.viewContext
+        
+        //ToDoエンティティオブジェクトの作成（SQL文とは異なる、オブジェクト指向）
+        let ToDo = NSEntityDescription.entity(forEntityName: "ToDo", in: viewContext)
+        
+        //ToDoエンティティにレコード（行）を挿入するためのオブジェクトを作成
+        let newRecord = NSManagedObject(entity: ToDo!, insertInto: viewContext)
+        
+        //カレンダーを取得
+        let myCalendar: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        
+        //24時間後の時刻を取得
+        let myDate2 = NSDate(timeInterval: 60 * 60 * 24 * 1, since: Date())
+        
+        //取得するコンポーネントを決める.
+        let myComponetns2 = myCalendar.components(
+            [NSCalendar.Unit.year,NSCalendar.Unit.month,NSCalendar.Unit.day,NSCalendar.Unit.weekday],
+            from: myDate2 as Date)
+
+        //値のセット（論理値の値はどう取るのか？）
+        newRecord.setValue(Date(), forKey: "inputDate")
+        newRecord.setValue(myComponetns2, forKey: "dueDate")
+        newRecord.setValue(myTitle.text, forKey: "myTitle")
+        newRecord.setValue(myContents.text, forKey: "myContents")
+        newRecord.setValue(false, forKey: "score")
+        newRecord.setValue(false, forKey: "complete")
+        newRecord.setValue(false, forKey: "reChallenge")
+        newRecord.setValue(false, forKey: "cancel")
+        newRecord.setValue(false, forKey: "revise")
+        
+        do {
+            //レコード（行）の即時保存
+            try viewContext.save()
+        } catch {
+        }
+        
+    }
+    
         //タイトル（textField)が編集された際に呼ばれる
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string1: String) -> Bool {
         

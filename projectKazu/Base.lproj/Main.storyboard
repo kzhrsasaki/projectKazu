@@ -176,7 +176,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="REA-eR-xdD" id="uPP-HM-3pU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -249,7 +249,7 @@
         <!--Item-->
         <scene sceneID="mBy-dB-32V">
             <objects>
-                <viewController id="AfD-FD-oUw" customClass="fourthViewController" customModule="projectKazu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AfD-FD-oUw" customClass="fourthViewController" customModule="projectKazu" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nct-KO-yDO"/>
                         <viewControllerLayoutGuide type="bottom" id="wbj-wo-3oH"/>
@@ -271,11 +271,15 @@
                                                 <rect key="frame" x="0.0" y="28" width="383" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4bF-RD-QWx" id="lWG-PI-eeD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="AfD-FD-oUw" id="1H1-NO-qrR"/>
+                                            <outlet property="delegate" destination="AfD-FD-oUw" id="U5F-tR-hF9"/>
+                                        </connections>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="実績まとめ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAT-JL-W3m">
                                         <rect key="frame" x="8" y="8" width="367" height="21"/>
@@ -399,6 +403,9 @@
                                         <state key="normal" title="登録する">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="tapResister:" destination="B33-tj-MrA" eventType="touchUpInside" id="CP3-ez-gXj"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-uc-0jo">
                                         <rect key="frame" x="124" y="163" width="227" height="30"/>

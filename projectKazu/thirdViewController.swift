@@ -33,9 +33,6 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //Coredataからのdataを読み込む処理（後で関数を定義）
-        read()
     
         //日付が変わった時のイベントをdatePickerに設定
         myDatePicker.addTarget(self, action: #selector(showDateSelected(sender:)), for: .valueChanged)
@@ -67,7 +64,9 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
         //画面に追加
         self.view.addSubview(baseView)
-
+        
+        //Coredataからのdataを読み込む処理（後で関数を定義）
+        read()
         
     }
     
@@ -110,36 +109,36 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         myTableView.reloadData()
     }
     
-    // 前の画面で登録ボタンが押された時にデータを新規登録する
-    
-        //AppDelegateを使う用意をしておく
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-        //エンティティを操作するためのオブジェクトを作成（persistentContainerはAppDelegate.swiftにあり）、DB接続に類似
-        let viewContext = appDelegate.persistentContainer.viewContext
-    
-        //ToDoエンティティオブジェクトの作成（SQL文とは異なる、オブジェクト指向）
-        let ToDo = NSEntityDescription.entity(forEntityName: "ToDo", in: viewContext)
-    
-        //ToDoエンティティにレコード（行）を挿入するためのオブジェクトを作成
-        let newRecord = NSManagedObject(entity: ToDo!, insertInto: viewContext)
-    
-        //値のセット（論理値の値はどう取るのか？）
-        newRecord.setValue(Date(), forKey: "inputDate")
-        newRecord.setValue(Date(), forKey: "dueDate")
-        newRecord.setValue(myTitle.text, forKey: "myTitle")
-        newRecord.setValue(myContents.text, forKey: "myContents")
-        newRecord.setValue(bool, forKey: "score")
-        newRecord.setValue(bool, forKey: "complete")
-        newRecord.setValue(bool, forKey: "reChallenge")
-        newRecord.setValue(bool, forKey: "cancel")
-        newRecord.setValue(bool, forKey: "revise")
-    
-    do {
-    //レコード（行）の即時保存
-      try viewContext.save()
-    } catch {
-    }
+//    // 前の画面で登録ボタンが押された時にデータを新規登録する
+//    
+//        //AppDelegateを使う用意をしておく
+//        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//    
+//        //エンティティを操作するためのオブジェクトを作成（persistentContainerはAppDelegate.swiftにあり）、DB接続に類似
+//        let viewContext = appDelegate.persistentContainer.viewContext
+//    
+//        //ToDoエンティティオブジェクトの作成（SQL文とは異なる、オブジェクト指向）
+//        let ToDo = NSEntityDescription.entity(forEntityName: "ToDo", in: viewContext)
+//    
+//        //ToDoエンティティにレコード（行）を挿入するためのオブジェクトを作成
+//        let newRecord = NSManagedObject(entity: ToDo!, insertInto: viewContext)
+//    
+//        //値のセット（論理値の値はどう取るのか？）
+//        newRecord.setValue(Date(), forKey: "inputDate")
+//        newRecord.setValue(Date(), forKey: "dueDate")
+//        newRecord.setValue(myTitle.text, forKey: "myTitle")
+//        newRecord.setValue(myContents.text, forKey: "myContents")
+//        newRecord.setValue(bool, forKey: "score")
+//        newRecord.setValue(bool, forKey: "complete")
+//        newRecord.setValue(bool, forKey: "reChallenge")
+//        newRecord.setValue(bool, forKey: "cancel")
+//        newRecord.setValue(bool, forKey: "revise")
+//    
+//    do {
+//    //レコード（行）の即時保存
+//      try viewContext.save()
+//    } catch {
+//    }
 
     //Coredataからのdataを読み込む処理
     read()

@@ -9,14 +9,29 @@
 import UIKit
 import CoreData
 
-class fourthViewController: UIViewController {
-
+class fourthViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
+    
+    // Tableで使用する配列を定義する
+    
+    // Sectionで使用する配列を定義する
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+    //セクションの数を返す
+    
+    //セクションのタイトルを返す
+    
+    //テーブルに表示する配列の総数を返す
+    
+    //セルに値を設定する
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
