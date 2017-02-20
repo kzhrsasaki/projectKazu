@@ -11,9 +11,15 @@ import CoreData
 
 class fourthViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var reportTableView: UITableView!
+    
     // Tableで使用する配列を定義する
+    let myTotals:NSArray = ["勝敗、？勝？敗","通算得点、？点"]
+    let myWeeks:NSArray = ["今週　？点","前週　？点","2週前　？点","3週前　？点",]
+    let myMonths:NSArray = ["今月　？点","前月　？点","2か月前　？点","3か月前　？点","4か月前　？点","5か月前　？点",]
     
     // Sectionで使用する配列を定義する
+    let mySections:NSArray = ["通算成績","週別成績（4週)","月別成績(6か月）"]
     
     
     override func viewDidLoad() {
@@ -23,15 +29,50 @@ class fourthViewController: UIViewController,UITableViewDataSource, UITableViewD
     }
     
     //セクションの数を返す
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return mySections.count
+        
     //セクションのタイトルを返す
-    
+        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            return mySections[section] as? String
+            
+    //セルが選択された際に呼び出される
+            func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                if indexPath.section == 0 {
+                    print("Value: \(myTotals[indexPath.row])")
+                } else if indexPath.section == 1 {
+                    print("Value: \(myWeeks[indexPath.row])")
+                } else if indexPath.section == 2 {
+                    print("Value: \(myMonths[indexPath.row])")
+            }
+                
     //テーブルに表示する配列の総数を返す
+            func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                if section == 0 {
+                    return myTotals.count
+                } else if section == 1 {
+                    return myWeeks.count
+                } else if section == 2 {
+                    return myMonths.count
+                } else {
+                    return 0
+                }
+            }
     
     //セルに値を設定する
-    
-    
-    
+            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+                    
+                let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+                    
+                if indexPath.section == 0 {
+                    cell.textLabel?.text = "\(myTotals[indexPath.row])"
+                } else if indexPath.section == 1 {
+                    cell.textLabel?.text = "\(myWeeks[indexPath.row])"
+                } else if indexPath.section == 2 {
+                    cell.textLabel?.text = "\(myMonths[indexPath.row])"
+                return cell
+            }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

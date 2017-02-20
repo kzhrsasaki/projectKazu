@@ -17,6 +17,15 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     //辞書配列の定義（文字列で良いか？）
     var todoList:[String] = NSArray() as! [String]
     
+    //セル内の項目の定義
+    @IBOutlet weak var inputDateLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var myTitleLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var reChallengeButton: UIButton!
+    @IBOutlet weak var completeButton: UIButton!
+    @IBOutlet weak var detailButton: UIButton!
+    
     //過去履歴表示変更設定の各項目
     @IBOutlet weak var fromDate: UITextField!
     @IBOutlet weak var toDate: UITextField!
@@ -97,11 +106,10 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
             let score: Int?  = result.value(forKey: "score") as? Int
             let complete: Bool? = result.value(forKey: "complete") as? Bool
             let reChallenge: Bool? = result.value(forKey: "reChallenge") as? Bool
-            let cancel: Bool? = result.value(forKey: "cancel") as? Bool
             let revise: Bool? = result.value(forKey: "revise") as? Bool
     
-            //データを配列に追加する。どうやって？
-            todoList.append("","","","","","","","","")
+           //データを配列に追加する。どうやって？
+       todoList.append("inputDate","dueDate","myTitle","myContents","score","complete","reChallenge","memo")
             }
         } catch {
         }
@@ -140,33 +148,33 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
 //    } catch {
 //    }
 
-    //Coredataからのdataを読み込む処理
-    read()
-
-    //削除ボタンが押されたとき（completeが完了していないデータのみ表示され、そのデータのみ削除される）
-    @IBAction func tapDelete(_ sender: UIButton) {
-        //AppDelegateを使う用意をしておく
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        //エンティティを操作するためのオブジェクトを作成
-        let viewContext = appDelegate.persistentContainer.viewContext
-        //どのエンティティからdataを取得してくるか設定　参考:let query: NSFetchRequest<ToDo> = ToDo.fetchRequest()
-        let request: NSFetchRequest<ToDo> = ToDo.fetchRequest()
-        do {
-            //削除するdataを一括取得
-            let fetchResults = try viewContext.fetch(request)
-            //削除するdataを一件ずつ取得
-            for result: AnyObject in fetchResults{
-                let record = result as! NSManagedObject
-                //1行ずつ削除
-                viewContext.delete(record)
-            }
-            //削除した状態を保存
-            try viewContext.save()
-        } catch {
-        }
-        //削除されたデータをtableViewに反映させる
-        read()
-    }
+//    //Coredataからのdataを読み込む処理
+//    read()
+//
+//    //削除ボタンが押されたとき（completeが完了していないデータのみ表示され、そのデータのみ削除される）
+//    @IBAction func tapDelete(_ sender: UIButton) {
+//        //AppDelegateを使う用意をしておく
+//        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//        //エンティティを操作するためのオブジェクトを作成
+//        let viewContext = appDelegate.persistentContainer.viewContext
+//        //どのエンティティからdataを取得してくるか設定　参考:let query: NSFetchRequest<ToDo> = ToDo.fetchRequest()
+//        let request: NSFetchRequest<ToDo> = ToDo.fetchRequest()
+//        do {
+//            //削除するdataを一括取得
+//            let fetchResults = try viewContext.fetch(request)
+//            //削除するdataを一件ずつ取得
+//            for result: AnyObject in fetchResults{
+//                let record = result as! NSManagedObject
+//                //1行ずつ削除
+//                viewContext.delete(record)
+//            }
+//            //削除した状態を保存
+//            try viewContext.save()
+//        } catch {
+//        }
+//        //削除されたデータをtableViewに反映させる
+//        read()
+//    }
 
     //TableViewの処理
     //行数を指定

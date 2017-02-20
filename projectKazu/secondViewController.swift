@@ -114,16 +114,15 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
             [NSCalendar.Unit.year,NSCalendar.Unit.month,NSCalendar.Unit.day,NSCalendar.Unit.weekday],
             from: myDate2 as Date)
 
-        //値のセット（論理値の値はどう取るのか？）
+        //値のセット
         newRecord.setValue(Date(), forKey: "inputDate")
         newRecord.setValue(myComponetns2, forKey: "dueDate")
         newRecord.setValue(myTitle.text, forKey: "myTitle")
         newRecord.setValue(myContents.text, forKey: "myContents")
-        newRecord.setValue(false, forKey: "score")
+        newRecord.setValue(changeSwitch(), forKey: "score")
         newRecord.setValue(false, forKey: "complete")
         newRecord.setValue(false, forKey: "reChallenge")
-        newRecord.setValue(false, forKey: "cancel")
-        newRecord.setValue(false, forKey: "revise")
+        newRecord.setValue(false, forKey: "memo")
         
         do {
             //レコード（行）の即時保存
@@ -192,17 +191,15 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
         myContents.resignFirstResponder()
     }
 
-    
+    // 「チャレンジ加算」の登録データを次の画面に推移 ??
     @IBAction func changeSwitch(_ sender: UISwitch) {
-        //print("切り替わったよ")
         print(sender.isOn)
-        
         if sender.isOn {
-            // SwitchがONのとき実行される
             print("スイッチON")
+            var score = 2
         }else{
-            // SwitchがOFFのとき実行される
             print("スイッチOFF")
+            var score = 1
         }
 
     }
