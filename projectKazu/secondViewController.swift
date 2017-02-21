@@ -127,11 +127,8 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
         } catch {
         }
     
-        //3番目のViewControllerを取得する
-        UINavigationController; *vc = self.tabBarController.ViewController[2]
-        
-        //thirdViewControllerのタブを選択済みにする
-        self.tabBarController.selectedViewController = vc
+        //tabbarの2番目のタブに切り替える
+        self.tabBarController?.selectedIndex = 1
     }
     
         //タイトル（textField)が編集された際に呼ばれる
