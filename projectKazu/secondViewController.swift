@@ -111,27 +111,27 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
         //24時間後の時刻を取得
         let myDate2 = NSDate(timeInterval: 60 * 60 * 24 * 1, since: Date())
         
-        //取得するコンポーネントを決める.
-        let myComponetns2 = myCalendar.components(
-            [NSCalendar.Unit.year,NSCalendar.Unit.month,NSCalendar.Unit.day,NSCalendar.Unit.weekday],
-            from: myDate2 as Date)
-
         //値のセット
         newRecord.setValue(Date(), forKey: "inputDate")
-        newRecord.setValue(myComponetns2, forKey: "dueDate")
+        newRecord.setValue(myDate2, forKey: "dueDate")
         newRecord.setValue(myTitle.text, forKey: "myTitle")
         newRecord.setValue(myContents.text, forKey: "myContents")
         newRecord.setValue(score, forKey: "score")
         newRecord.setValue(false, forKey: "complete")
         newRecord.setValue(false, forKey: "reChallenge")
-        newRecord.setValue(false, forKey: "memo")
+        newRecord.setValue("", forKey: "memo")
         
         do {
             //レコード（行）の即時保存
             try viewContext.save()
         } catch {
         }
+    
+        //3番目のViewControllerを取得する
+        UINavigationController; *vc = self.tabBarController.ViewController[2]
         
+        //thirdViewControllerのタブを選択済みにする
+        self.tabBarController.selectedViewController = vc
     }
     
         //タイトル（textField)が編集された際に呼ばれる
@@ -180,8 +180,7 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
                 alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in print("OK")}))
                 
                 //アラートを表示する
-                present(alertController,animated: true, completion: nil)
-            
+                present(alertController,animated: true, completion: nil)            
                 return false
             }
             
@@ -189,7 +188,6 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
     
     //キーボードを閉じる（右上に完了文字）
     func closeKeyBoard(sender:UIButton){
-        
         myContents.resignFirstResponder()
     }
 

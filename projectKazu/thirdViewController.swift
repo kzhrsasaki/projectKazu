@@ -15,7 +15,8 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     @IBOutlet weak var myTableView: UITableView!
   
     //辞書配列の定義（文字列で良いか？）
-    var todoList:[String] = NSArray() as! [String]
+    //var todoList:[String] = NSArray() as! [String]
+    var todoList:[NSString] = []
     
     //過去履歴表示変更設定の各項目
     @IBOutlet weak var fromDate: UITextField!
@@ -24,49 +25,50 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     
     //datePickerを載せるView
     let baseView:UIView = UIView(frame: CGRect(x: 0, y: 720, width: 200, height: 250))
-    
     //datePicker(日付編集時）
     let myDatePicker:UIDatePicker = UIDatePicker(frame: CGRect(x: 10, y: 20, width: 300, height: 220))
-    
     //datePickerを隠すためのボタン
     let closeBtnDatePicker:UIButton = UIButton(type: .system)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         //日付が変わった時のイベントをdatePickerに設定
         myDatePicker.addTarget(self, action: #selector(showDateSelected(sender:)), for: .valueChanged)
-        
         //baseViewにdatePickerを配置
         baseView.addSubview(myDatePicker)
-        
         //baseViewにボタンを配置
         //位置、大きさを決定
         closeBtnDatePicker.frame = CGRect(x: self.view.frame.width - 60, y: 0, width: 50, height: 20)
-
         //タイトルの設定
         closeBtnDatePicker.setTitle("Close", for: .normal)
-        
         //イベントの追加
         closeBtnDatePicker.addTarget(self, action: #selector(closeDatePickerView(sender:)), for: .touchUpInside)
-        
         //Viewに追加
         baseView.addSubview(closeBtnDatePicker)
-        
         //下にぴったり配置（下から出したいので）、横幅ピッタリの大きさにしておく
         baseView.frame.origin = CGPoint(x: 0, y: self.view.frame.size.height)
-        
         //横幅
         baseView.frame.size = CGSize(width: self.view.frame.width, height: baseView.frame.height)
-        
         //背景色をGrayにセット
         baseView.backgroundColor = UIColor.gray
-        
         //画面に追加
         self.view.addSubview(baseView)
         
         //Coredataからのdataを読み込む処理（後で関数を定義）
         read()
+        
+        //ディクショナリー型に代入
+        //AppDelegateへのアクセス準備
+       // let myApp = UIApplication.shared.delegate as! AppDelegate
+       // myApp.dicTodoList = NSDictionary()
+        
+        //TableViewで扱いやすい形を作成、.appendで追加
+       // for(key,data) in myApp.dicTodoList{
+       //     print(key)
+       //     todoList.append(key as! NSString)
+       // }
         
     }
     
@@ -86,7 +88,7 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         let fetchResults = try viewContext.fetch(query)
     
         //いったん配列を空っぽにする（初期化する）
-        todoList = NSArray.self as! [String]
+       // todoList = NSArray.self as! [String]
 
         //データを一件ずつ取得(result)
         for result: AnyObject in fetchResults{
