@@ -179,11 +179,11 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="REA-eR-xdD">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="REA-eR-xdD" customClass="TableViewCell" customModule="projectKazu" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="REA-eR-xdD" id="uPP-HM-3pU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="inputDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKF-XY-U05">
@@ -232,6 +232,15 @@
                                                         </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="completeButton" destination="nNK-mj-X43" id="rvM-Rd-t5L"/>
+                                                    <outlet property="detailButton" destination="teH-AP-4uu" id="IGp-5b-Guo"/>
+                                                    <outlet property="dueDateLabel" destination="RNe-qw-s8T" id="46y-Wf-Msc"/>
+                                                    <outlet property="inputDateLabel" destination="XKF-XY-U05" id="rnQ-MS-2Mx"/>
+                                                    <outlet property="myTitleLabel" destination="bMH-mS-9Bh" id="eIJ-7G-ueR"/>
+                                                    <outlet property="reChallengeButton" destination="AQD-Mc-eVV" id="3jk-qq-g3N"/>
+                                                    <outlet property="scoreLabel" destination="Ldv-JC-jLm" id="OkJ-GM-FxP"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -247,16 +256,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="history" id="qsZ-6W-zSL"/>
                     <connections>
-                        <outlet property="completeButton" destination="nNK-mj-X43" id="95z-fd-53A"/>
-                        <outlet property="detailButton" destination="teH-AP-4uu" id="Aj6-02-ugc"/>
-                        <outlet property="dueDateLabel" destination="RNe-qw-s8T" id="hyy-2n-SYv"/>
                         <outlet property="fromDate" destination="JBK-4M-xbd" id="uBM-aR-x0M"/>
-                        <outlet property="inputDateLabel" destination="XKF-XY-U05" id="hRa-T3-0X5"/>
                         <outlet property="myScore" destination="1o2-r5-4IR" id="3Gk-0E-Wox"/>
                         <outlet property="myTableView" destination="9i7-D5-6m2" id="o8V-qf-qna"/>
-                        <outlet property="myTitleLabel" destination="bMH-mS-9Bh" id="afb-Z2-fAy"/>
-                        <outlet property="reChallengeButton" destination="AQD-Mc-eVV" id="oRz-xn-eOA"/>
-                        <outlet property="scoreLabel" destination="Ldv-JC-jLm" id="BWQ-dp-jxJ"/>
                         <outlet property="toDate" destination="AwS-NR-5Md" id="3lh-qa-MJJ"/>
                     </connections>
                 </viewController>

@@ -23,6 +23,8 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
     //辞書配列の定義（文字列で良いか？）
     var todoList:[String] = NSArray() as! [String]
     
+    //scoreのメンバー変数化
+    var score:Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +121,7 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
         newRecord.setValue(myComponetns2, forKey: "dueDate")
         newRecord.setValue(myTitle.text, forKey: "myTitle")
         newRecord.setValue(myContents.text, forKey: "myContents")
-        newRecord.setValue(changeSwitch(), forKey: "score")
+        newRecord.setValue(score, forKey: "score")
         newRecord.setValue(false, forKey: "complete")
         newRecord.setValue(false, forKey: "reChallenge")
         newRecord.setValue(false, forKey: "memo")
@@ -196,10 +198,10 @@ class secondViewController: UIViewController, UITextFieldDelegate,UITextViewDele
         print(sender.isOn)
         if sender.isOn {
             print("スイッチON")
-            var score = 2
+            score = 2
         }else{
             print("スイッチOFF")
-            var score = 1
+            score = 1
         }
 
     }

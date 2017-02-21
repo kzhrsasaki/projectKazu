@@ -17,15 +17,6 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     //辞書配列の定義（文字列で良いか？）
     var todoList:[String] = NSArray() as! [String]
     
-    //セル内の項目の定義
-    @IBOutlet weak var inputDateLabel: UILabel!
-    @IBOutlet weak var dueDateLabel: UILabel!
-    @IBOutlet weak var myTitleLabel: UILabel!
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var reChallengeButton: UIButton!
-    @IBOutlet weak var completeButton: UIButton!
-    @IBOutlet weak var detailButton: UIButton!
-    
     //過去履歴表示変更設定の各項目
     @IBOutlet weak var fromDate: UITextField!
     @IBOutlet weak var toDate: UITextField!
@@ -102,14 +93,13 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
             let inputDate: Date? = result.value(forKey: "inputDate") as? Date
             let dueDate: Date? = result.value(forKey: "dueDate") as? Date
             let myTitle: String? = result.value(forKey: "myTitle") as? String
-            let myContents: String? = result.value(forKey: "myContents") as? String
             let score: Int?  = result.value(forKey: "score") as? Int
             let complete: Bool? = result.value(forKey: "complete") as? Bool
             let reChallenge: Bool? = result.value(forKey: "reChallenge") as? Bool
-            let revise: Bool? = result.value(forKey: "revise") as? Bool
+            let myContents: String? = result.value(forKey: "myContents") as? String
+            let memo: String? = result.value(forKey: "memo") as? String
     
-           //データを配列に追加する。どうやって？
-       todoList.append("inputDate","dueDate","myTitle","myContents","score","complete","reChallenge","memo")
+           //データを配列に追加する。どうやって？todoList.append("inputDate","dueDate","myTitle","score","complete","reChallenge","myContents","memo")
             }
         } catch {
         }
@@ -117,65 +107,6 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         myTableView.reloadData()
     }
     
-//    // 前の画面で登録ボタンが押された時にデータを新規登録する
-//    
-//        //AppDelegateを使う用意をしておく
-//        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//    
-//        //エンティティを操作するためのオブジェクトを作成（persistentContainerはAppDelegate.swiftにあり）、DB接続に類似
-//        let viewContext = appDelegate.persistentContainer.viewContext
-//    
-//        //ToDoエンティティオブジェクトの作成（SQL文とは異なる、オブジェクト指向）
-//        let ToDo = NSEntityDescription.entity(forEntityName: "ToDo", in: viewContext)
-//    
-//        //ToDoエンティティにレコード（行）を挿入するためのオブジェクトを作成
-//        let newRecord = NSManagedObject(entity: ToDo!, insertInto: viewContext)
-//    
-//        //値のセット（論理値の値はどう取るのか？）
-//        newRecord.setValue(Date(), forKey: "inputDate")
-//        newRecord.setValue(Date(), forKey: "dueDate")
-//        newRecord.setValue(myTitle.text, forKey: "myTitle")
-//        newRecord.setValue(myContents.text, forKey: "myContents")
-//        newRecord.setValue(bool, forKey: "score")
-//        newRecord.setValue(bool, forKey: "complete")
-//        newRecord.setValue(bool, forKey: "reChallenge")
-//        newRecord.setValue(bool, forKey: "cancel")
-//        newRecord.setValue(bool, forKey: "revise")
-//    
-//    do {
-//    //レコード（行）の即時保存
-//      try viewContext.save()
-//    } catch {
-//    }
-
-//    //Coredataからのdataを読み込む処理
-//    read()
-//
-//    //削除ボタンが押されたとき（completeが完了していないデータのみ表示され、そのデータのみ削除される）
-//    @IBAction func tapDelete(_ sender: UIButton) {
-//        //AppDelegateを使う用意をしておく
-//        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//        //エンティティを操作するためのオブジェクトを作成
-//        let viewContext = appDelegate.persistentContainer.viewContext
-//        //どのエンティティからdataを取得してくるか設定　参考:let query: NSFetchRequest<ToDo> = ToDo.fetchRequest()
-//        let request: NSFetchRequest<ToDo> = ToDo.fetchRequest()
-//        do {
-//            //削除するdataを一括取得
-//            let fetchResults = try viewContext.fetch(request)
-//            //削除するdataを一件ずつ取得
-//            for result: AnyObject in fetchResults{
-//                let record = result as! NSManagedObject
-//                //1行ずつ削除
-//                viewContext.delete(record)
-//            }
-//            //削除した状態を保存
-//            try viewContext.save()
-//        } catch {
-//        }
-//        //削除されたデータをtableViewに反映させる
-//        read()
-//    }
-
     //TableViewの処理
     //行数を指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
