@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1853651D1E5CD37B00CA7435 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1853651C1E5CD37B00CA7435 /* detailViewController.swift */; };
 		1857D3441E56E8D100EB2AAD /* ToDo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857D3421E56E8D100EB2AAD /* ToDo+CoreDataClass.swift */; };
 		1857D3451E56E8D100EB2AAD /* ToDo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857D3431E56E8D100EB2AAD /* ToDo+CoreDataProperties.swift */; };
 		187435781E53FFD40013AD33 /* secondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187435771E53FFD40013AD33 /* secondViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1853651C1E5CD37B00CA7435 /* detailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		1857D3421E56E8D100EB2AAD /* ToDo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToDo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1857D3431E56E8D100EB2AAD /* ToDo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToDo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		187435771E53FFD40013AD33 /* secondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secondViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				18D3F8BD1E4D69370085AA61 /* ViewController.swift */,
 				18FF86341E5680CC00F7AD9D /* projectKazu.xcdatamodeld */,
 				18D3F8BF1E4D69370085AA61 /* Main.storyboard */,
+				1853651C1E5CD37B00CA7435 /* detailViewController.swift */,
 				18FF14C51E5BD1150094CA68 /* TableViewCell.swift */,
 				1874357D1E5400940013AD33 /* fifthViewController.swift */,
 				1874357B1E5400700013AD33 /* fourthViewController.swift */,
@@ -286,6 +289,7 @@
 				1874357C1E5400700013AD33 /* fourthViewController.swift in Sources */,
 				18D3F8BE1E4D69370085AA61 /* ViewController.swift in Sources */,
 				1874357E1E5400940013AD33 /* fifthViewController.swift in Sources */,
+				1853651D1E5CD37B00CA7435 /* detailViewController.swift in Sources */,
 				187435781E53FFD40013AD33 /* secondViewController.swift in Sources */,
 				1874357A1E5400300013AD33 /* thirdViewController.swift in Sources */,
 				18FF14C61E5BD1150094CA68 /* TableViewCell.swift in Sources */,

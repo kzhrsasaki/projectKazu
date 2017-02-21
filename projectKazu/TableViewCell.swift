@@ -19,6 +19,16 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var detailButton: UIButton!
     
+    // inputDateは　yyyy/MM/dd mm:ssまで（配列のkeyデータとするため）
+    
+    // dueDateは　MM/ddまで
+    
+    // "\(score)点"
+    
+    // reChallenge は　score == 0 && complete == true の場合のみ、アクティブ
+    
+    // complete は　ユーザーが自分で登録するか、または、現在の日付 > dueDate の場合に　true
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

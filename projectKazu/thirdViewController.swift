@@ -18,35 +18,45 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     //var todoList:[String] = NSArray() as! [String]
     var todoList:[NSString] = []
     
+    //選択されたinputDateが格納される変数
+    var selectedDate:String = String(describing: Date())
+    
     //過去履歴表示変更設定の各項目
     @IBOutlet weak var fromDate: UITextField!
     @IBOutlet weak var toDate: UITextField!
-    @IBOutlet weak var myScore: UITextField!
     
     //datePickerを載せるView
     let baseView:UIView = UIView(frame: CGRect(x: 0, y: 720, width: 200, height: 250))
-    //datePicker(日付編集時）
+    //datePickerを生成(日付編集時）
     let myDatePicker:UIDatePicker = UIDatePicker(frame: CGRect(x: 10, y: 20, width: 300, height: 220))
     //datePickerを隠すためのボタン
     let closeBtnDatePicker:UIButton = UIButton(type: .system)
     
+    //詳細画面とのセグエ連携のためのカウント用変数（初期値0)
+    var detailCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         //日付が変わった時のイベントをdatePickerに設定
         myDatePicker.addTarget(self, action: #selector(showDateSelected(sender:)), for: .valueChanged)
+        
         //baseViewにdatePickerを配置
         baseView.addSubview(myDatePicker)
+        
         //baseViewにボタンを配置
         //位置、大きさを決定
         closeBtnDatePicker.frame = CGRect(x: self.view.frame.width - 60, y: 0, width: 50, height: 20)
+        
         //タイトルの設定
         closeBtnDatePicker.setTitle("Close", for: .normal)
+        
         //イベントの追加
         closeBtnDatePicker.addTarget(self, action: #selector(closeDatePickerView(sender:)), for: .touchUpInside)
+        
         //Viewに追加
         baseView.addSubview(closeBtnDatePicker)
+        
         //下にぴったり配置（下から出したいので）、横幅ピッタリの大きさにしておく
         baseView.frame.origin = CGPoint(x: 0, y: self.view.frame.size.height)
         //横幅
@@ -56,19 +66,20 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         //画面に追加
         self.view.addSubview(baseView)
         
+        
         //Coredataからのdataを読み込む処理（後で関数を定義）
         read()
         
         //ディクショナリー型に代入
         //AppDelegateへのアクセス準備
-       // let myApp = UIApplication.shared.delegate as! AppDelegate
-       // myApp.dicTodoList = NSDictionary()
+       let myApp = UIApplication.shared.delegate as! AppDelegate
+       myApp.dicTodoList = NSDictionary()
         
         //TableViewで扱いやすい形を作成、.appendで追加
-       // for(key,data) in myApp.dicTodoList{
-       //     print(key)
-       //     todoList.append(key as! NSString)
-       // }
+       for(key,data) in myApp.dicTodoList{
+            print(key)
+            todoList.append(key as! NSString)
+        }
         
     }
     
@@ -124,37 +135,26 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
         return cell
     }
-
-    //textFieldにカーソルが当たったとき（入力開始）
+    
+    //過去履歴表示設定変更
+    //textFieldにカーソルが当たったとき（開始日、終了日）
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         print("textFieldShouldBeginEditing 発動された")
-        print(textField.tag)
-    
         //日付のview（下で関数を書いておけば、１行で済む）
         displayDatePickerView()
-        
-        switch textField.tag{
-        case 3:
-            //得点
-            //datePickerではなく、４択のpickerが必要
-            hideDatePickerView()
-            return true
-        default:
-            return true
-        }
         
         return true
     }
 
-    //DatePickerのViewを隠す
-    func hideDatePickerView(){
-        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-            
-            self.baseView.frame.origin = CGPoint(x: 0, y: self.view.frame.size.height)
-            
-        },completion:{finished in print("DatePickerを隠しました")})
-    }
-    
+//    //DatePickerのViewを隠す
+//    func hideDatePickerView(){
+//        UIView.animate(withDuration: 0.5, animations: {() -> Void in
+//            
+//            self.baseView.frame.origin = CGPoint(x: 0, y: self.view.frame.size.height)
+//            
+//        },completion:{finished in print("DatePickerを隠しました")})
+//    }
+
     //datePickerのViewを表示する
     func displayDatePickerView(){
         UIView.animate(withDuration: 0.5, animations: {() -> Void in
@@ -179,8 +179,8 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         let df = DateFormatter()
         df.dateFormat = "yyyy/MM/dd"
         
-        //日付を文字列に変換
-        let strSelectedDate = df.string(from: sender.date)
+        //日付を文字列に変換（日付用のTextFieldが2つあるため、定数ではなくて変数）
+        var strSelectedDate = df.string(from: sender.date)
         
         //TextFieldに値を表示
         fromDate.text = strSelectedDate
@@ -188,6 +188,35 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
     }
 
+    //「詳細」ボタンが押されたときに発動
+    @IBAction func touchDetailBtn(_ sender: UIButton) {
+    
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("\((indexPath as IndexPath).row)行目を選択")
+            //選択された行に表示された名前を格納
+            selectedDate = todoList[indexPath.row] as String
+        
+            //セグエを使って画面移動、identifierに入力済みのもの
+            performSegue(withIdentifier: "showDetailView", sender: nil)
+        }
+    }
+    
+    //Segueで画面遷移する時発動
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //ダウンキャスティングで型変換
+        let detailVC = segue.destination as! detailViewController
+        
+        //次の画面detailViewControllerに選択された日付と配列を渡す
+        detailVC.scSelectedDate = selectedDate
+        
+        detailVC.todoList = todoList
+        // デバッグエリアの情報をわかりやすく表示
+        print("番号\(detailVC.scSelectedDate)を次の画面へ渡す")
+        
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
