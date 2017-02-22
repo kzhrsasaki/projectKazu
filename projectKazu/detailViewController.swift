@@ -15,7 +15,7 @@ class detailViewController: UIViewController {
     @IBOutlet weak var myMemo: UITextView!
     
     //配列を前の画面から引き継ぐ
-    var todoList:[NSString] = []
+    var todoList:[NSDictionary] = []
     
     //リストから選ばれた名前
     var scSelectedDate = ""

@@ -16,7 +16,7 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
   
     //辞書配列の定義（文字列で良いか？）
     //var todoList:[String] = NSArray() as! [String]
-    var todoList:[NSString] = []
+    var todoList:[NSDictionary] = []
     
     //選択されたinputDateが格納される変数
     var selectedDate:String = String(describing: Date())
@@ -35,6 +35,8 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     //詳細画面とのセグエ連携のためのカウント用変数（初期値0)
     var detailCount = 0
     
+    // 履歴の削除機能（データを選んで複数まとめて削除が可能なようにする）
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -49,7 +51,7 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         closeBtnDatePicker.frame = CGRect(x: self.view.frame.width - 60, y: 0, width: 50, height: 20)
         
         //タイトルの設定
-        closeBtnDatePicker.setTitle("Close", for: .normal)
+        closeBtnDatePicker.setTitle("閉じる", for: .normal)
         
         //イベントの追加
         closeBtnDatePicker.addTarget(self, action: #selector(closeDatePickerView(sender:)), for: .touchUpInside)
@@ -76,10 +78,10 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
        myApp.dicTodoList = NSDictionary()
         
         //TableViewで扱いやすい形を作成、.appendで追加
-       for(key,data) in myApp.dicTodoList{
-            print(key)
-            todoList.append(key as! NSString)
-        }
+       //for(key,data) in myApp.dicTodoList{
+         //   print(key)
+         //  todoList.append(key as! NSString)
+       // }
         
     }
     
@@ -112,7 +114,8 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
             let myContents: String? = result.value(forKey: "myContents") as? String
             let memo: String? = result.value(forKey: "memo") as? String
     
-           //データを配列に追加する。どうやって？todoList.append("inputDate","dueDate","myTitle","score","complete","reChallenge","myContents","memo")
+           //データを配列に追加する。どうやって？
+            todoList.append(["inputDate":inputDate,"dueDate":dueDate,"myTitle":myTitle,"score":score,"complete":complete,"reChallenge":reChallenge,"myContents":myContents,"memo":memo])
             }
         } catch {
         }
@@ -129,9 +132,24 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     //セルの表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
+        
         //セルを表示するためのコード"\()"
         cell.textLabel?.text = "\(todoList[indexPath.row])"
+        
+        cell.inputDateLabel.text = "yyyy/MM/dd"
+        cell.dueDateLabel.text = "MM/dd"
+        cell.myTitleLabel.text = ""
+        cell.scoreLabel.text = ""
+        
+        var reChalle:String? = nil
+        if score == 0 && complete == true {
+            reChalle = "もう1回"
+        } else {
+            reChalle = "-"
+        }
+        cell.reChallengeButton.setTitle(reChalle, for: .normal)
+        cell.completeButton.setTitle("", for: .normal)
         
         return cell
     }
@@ -140,26 +158,20 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     //textFieldにカーソルが当たったとき（開始日、終了日）
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         print("textFieldShouldBeginEditing 発動された")
+            print(textField.tag)
         //日付のview（下で関数を書いておけば、１行で済む）
+        myDatePicker.tag = textField.tag
         displayDatePickerView()
         
-        return true
+        return false
     }
-
-//    //DatePickerのViewを隠す
-//    func hideDatePickerView(){
-//        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-//            
-//            self.baseView.frame.origin = CGPoint(x: 0, y: self.view.frame.size.height)
-//            
-//        },completion:{finished in print("DatePickerを隠しました")})
-//    }
 
     //datePickerのViewを表示する
     func displayDatePickerView(){
         UIView.animate(withDuration: 0.5, animations: {() -> Void in
             
             self.baseView.frame.origin = CGPoint(x: 0, y: self.view.frame.size.height -  self.baseView.frame.height)
+
         },completion:{finished in print("DatePickerが現れました")})
     }
     
@@ -183,8 +195,14 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         var strSelectedDate = df.string(from: sender.date)
         
         //TextFieldに値を表示
-        fromDate.text = strSelectedDate
-        toDate.text = strSelectedDate
+        switch sender.tag{
+        case 1:
+            fromDate.text = strSelectedDate
+        case 2:
+            toDate.text = strSelectedDate
+        default: break
+
+        }
         
     }
 
@@ -194,7 +212,7 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             print("\((indexPath as IndexPath).row)行目を選択")
             //選択された行に表示された名前を格納
-            selectedDate = todoList[indexPath.row] as String
+//            selectedDate = todoList[indexPath.row] as String
         
             //セグエを使って画面移動、identifierに入力済みのもの
             performSegue(withIdentifier: "showDetailView", sender: nil)

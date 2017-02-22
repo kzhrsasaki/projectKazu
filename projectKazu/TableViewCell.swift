@@ -26,6 +26,7 @@ class TableViewCell: UITableViewCell {
     // "\(score)点"
     
     // reChallenge は　score == 0 && complete == true の場合のみ、アクティブ
+    // reChallengeを選択すると、そのデータについてのみ、上書きされる。inputDateは今の時刻になる。
     
     // complete は　ユーザーが自分で登録するか、または、現在の日付 > dueDate の場合に　true
     
