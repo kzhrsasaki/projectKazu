@@ -23,12 +23,12 @@ class TableViewCell: UITableViewCell {
     
     // dueDateは　MM/ddまで
     
-    // "\(score)点"
+    // "\(score)点" 、scoreは、completeが”未了”の場合は"0点"、「完了登録」ボタンが表示されている間は”未"、"済み”の場合はsecondViewContollerでの取得データ通り
     
     // reChallenge は　score == 0 && complete == true の場合のみ、アクティブ
     // reChallengeを選択すると、そのデータについてのみ、上書きされる。inputDateは今の時刻になる。
     
-    // complete は　ユーザーが自分で登録するか、または、現在の日付 > dueDate の場合に　true
+    // complete は　ユーザーが自分で登録した場合は"済み"、期限内でユーザーがまだ登録していない場合は"完了登録ボタン"を表示、完了せずに現在の日付 > dueDate の場合は"未了"の表示
     
     override func awakeFromNib() {
         super.awakeFromNib()

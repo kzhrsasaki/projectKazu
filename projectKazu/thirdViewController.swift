@@ -37,6 +37,7 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     
     // 履歴の削除機能（データを選んで複数まとめて削除が可能なようにする）
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -75,7 +76,7 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         //ディクショナリー型に代入
         //AppDelegateへのアクセス準備
        let myApp = UIApplication.shared.delegate as! AppDelegate
-       myApp.dicTodoList = NSDictionary()
+       myApp.dic = NSDictionary()
         
         //TableViewで扱いやすい形を作成、.appendで追加
        //for(key,data) in myApp.dicTodoList{
@@ -121,6 +122,7 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         }
         //TableViewの再描画、書く場所が大事
         myTableView.reloadData()
+        
     }
     
     //TableViewの処理
@@ -135,24 +137,39 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         
         //セルを表示するためのコード"\()"
-        cell.textLabel?.text = "\(todoList[indexPath.row])"
+//        cell.textLabel?.text = "\(todoList[indexPath.row])"
+        print(todoList[indexPath.row])
         
-        cell.inputDateLabel.text = "yyyy/MM/dd"
-        cell.dueDateLabel.text = "MM/dd"
-        cell.myTitleLabel.text = ""
-        cell.scoreLabel.text = ""
+        var dic:NSDictionary = todoList[indexPath.row]
         
-        var reChalle:String? = nil
-        if score == 0 && complete == true {
-            reChalle = "もう1回"
-        } else {
-            reChalle = "-"
-        }
-        cell.reChallengeButton.setTitle(reChalle, for: .normal)
-        cell.completeButton.setTitle("", for: .normal)
+        let df = DateFormatter()
+        df.dateFormat = "yy/MM/dd"
+        
+        //日付を文字列に変換
+        cell.inputDateLabel.text = df.string(from: dic["inputDate"] as! Date)
+        cell.dueDateLabel.text = df.string(from: dic["dueDate"] as! Date)
+        cell.myTitleLabel.text = dic["myTitle"] as! String
+        
+        
+        //cell.scoreLabel.text = "\(score)点"
+        
+        cell.reChallengeButton.setTitle("", for: .normal)
+        
+        var completeBtnTitle = "完了"
+//          if (dic["complete"] as! String == "0"){
+//             completeBtnTitle = "完了ボタン"
+//          }
+        
+        cell.completeButton.setTitle(completeBtnTitle, for: .normal)
         
         return cell
     }
+    
+    //CompleteBtnを押したとき、CoreDateから該当のinputDateをキーとするデータを取り出して、complete = 1 に書き換える
+    @IBAction func tapCompleteBtn(_ sender: UIButton) {
+        
+    }
+    
     
     //過去履歴表示設定変更
     //textFieldにカーソルが当たったとき（開始日、終了日）

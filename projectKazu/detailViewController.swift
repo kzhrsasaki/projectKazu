@@ -28,7 +28,7 @@ class detailViewController: UIViewController {
         // AppDelegeteにアクセスするための準備
         let myApp = UIApplication.shared.delegate as! AppDelegate
         
-        for(key,data) in myApp.dicTodoList{
+        for(key,data) in myApp.dic{
             var dicForData:NSDictionary = data as! NSDictionary
             
             if((key as! String) as String == scSelectedDate){
