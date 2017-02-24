@@ -38,6 +38,7 @@ class detailViewController: UIViewController {
         }
     }
 
+    
     // myMemo（ふり返り）をcompleteがtrue以降にのみ入力可にする
     
     // myMemo(ふり返り）を100文字以内の入力とする

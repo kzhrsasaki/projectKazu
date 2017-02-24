@@ -35,7 +35,14 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     //詳細画面とのセグエ連携のためのカウント用変数（初期値0)
     var detailCount = 0
     
+    // 詳細画面から戻ってくる(unwind segue)
+    @IBAction func back(Segue:UIStoryboardSegue){
+    print("戻る")
+    }
+    
     // 履歴の削除機能（データを選んで複数まとめて削除が可能なようにする）
+    
+    
     
     
     override func viewDidLoad() {
@@ -155,9 +162,9 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
         cell.reChallengeButton.setTitle("", for: .normal)
         
-        var completeBtnTitle = "完了"
+        var completeBtnTitle = "完了入力"
 //          if (dic["complete"] as! String == "0"){
-//             completeBtnTitle = "完了ボタン"
+//             completeBtnTitle = "完了入力"
 //          }
         
         cell.completeButton.setTitle(completeBtnTitle, for: .normal)
@@ -167,7 +174,27 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
     
     //CompleteBtnを押したとき、CoreDateから該当のinputDateをキーとするデータを取り出して、complete = 1 に書き換える
     @IBAction func tapCompleteBtn(_ sender: UIButton) {
-        
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let viewContext = appDelegate.persistentContainer.viewContext
+       // let ToDo = NSEntityDescription.entity(forEntityName: "ToDo", in: viewContext)
+        var dic:NSDictionary = todoList[]
+        let df = DateFormatter()
+        df.dateFormat = "yy/MM/dd"
+           //データの更新
+            let request: NSFetchRequest<ToDo> = ToDo.fetchRequest()
+            var strSavedDate: String = df.string(from: dic["inputDate"] as! Date)
+            var savedDate :Date = df.date(from: strSavedDate)!
+            do{
+              let namePredicte = NSPredicate(format: "created_at = %@", savedDate as CVarArg)
+                request.predicate = namePredicte
+                let fetchResults = try viewContext.fetch(request)
+                //登録された日付を元に1件取得　新しい値を入れる
+                for result: AnyObject in fetchResults {
+                    let record = result as! NSManagedObject
+                    
+                }
+                    
+            }
     }
     
     
@@ -248,10 +275,9 @@ class thirdViewController: UIViewController,UITableViewDataSource, UITableViewDe
         detailVC.todoList = todoList
         // デバッグエリアの情報をわかりやすく表示
         print("番号\(detailVC.scSelectedDate)を次の画面へ渡す")
-        
     }
-
     
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
